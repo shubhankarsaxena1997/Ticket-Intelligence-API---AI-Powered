@@ -1,0 +1,67 @@
+[
+  {
+    "ticket_id": "INC001",
+    "short_description": "Payment API returning 500 errors",
+    "description": "The Payment API is returning HTTP 500 errors when customers attempt to complete card payment transactions. Multiple customers are reporting failed payments across the checkout flow.",
+    "priority": "P1",
+    "status": "In Progress",
+    "category": "Payment",
+    "created_at": "2026-09-11T09:00:00",
+    "resolved_at": "2026-09-11T15:00:00",
+    "sla_hours": 4,
+    "resolution": "The issue was resolved after identifying an unhandled exception in the payment validation service. The faulty validation logic was corrected and the service was redeployed.",
+    "resolution_notes": "Application logs showed repeated exceptions in the payment validation component. The issue was introduced during a recent deployment. The deployment was rolled back and the corrected version was deployed successfully."    
+  },
+  {
+    "ticket_id": "INC002",
+    "short_description": "Payment transaction failures",
+    "description": "Customers are experiencing failed payment transactions during checkout. Transactions are intermittently failing before the payment confirmation step.",
+    "priority": "P1",
+    "status": "Resolved",
+    "category": "Payment",
+    "created_at": "2026-09-11T09:00:00",
+    "resolved_at": "2026-09-11T12:30:00",
+    "sla_hours": 4,
+    "resolution": "The issue was resolved by increasing the database connection pool and restarting the payment service.",
+    "resolution_notes": "Investigation showed that the database connection pool had reached its maximum limit. Payment requests could not obtain database connections, resulting in transaction failures. The connection pool configuration was increased and the service was restarted."
+  },
+  {
+    "ticket_id": "INC003",
+    "short_description": "Password reset not working",
+    "description": "Users are unable to reset their passwords through the password recovery flow. The reset request is submitted successfully, but users do not receive the password reset email.",
+    "priority": "P2",
+    "status": "Open",
+    "category": "Authentication",
+    "created_at": "2026-09-11T09:00:00",
+    "resolved_at": "2026-09-11T12:30:00",
+    "sla_hours": 8,
+    "resolution": "The issue was resolved by correcting the email service configuration and restarting the authentication service.",
+    "resolution_notes": "The authentication service was using an incorrect SMTP configuration after a configuration update. The SMTP settings were corrected and password reset emails were successfully delivered."
+  },
+  {
+    "ticket_id": "INC004",
+    "short_description": "Database connection timeout",
+    "description": "The application is experiencing database connection timeouts. API requests that require database access are taking longer than expected and eventually fail.",
+    "priority": "P1",
+    "status": "Resolved",
+    "category": "Database",
+    "created_at": "2026-09-11T09:00:00",
+    "resolved_at": "2026-09-11T12:30:00",
+    "sla_hours": 4,
+    "resolution": "The issue was resolved by terminating stale database connections and optimizing the connection pool configuration.",
+    "resolution_notes": "Database monitoring showed a large number of stale connections consuming available connection slots. Stale connections were terminated and the connection pool timeout settings were adjusted to prevent the issue from recurring."
+  },
+  {
+    "ticket_id": "INC005",
+    "short_description": "Payment service unavailable",
+    "description": "The payment service is unavailable and customers are unable to complete payment transactions. Requests to the payment service are failing across multiple checkout attempts.",
+    "priority": "P1",
+    "status": "Resolved",
+    "category": "Payment",
+    "created_at": "2026-09-11T09:00:00",
+    "resolved_at": "2026-09-11T12:30:00",
+    "sla_hours": 4,
+    "resolution": "The payment service was restored after resolving database connection exhaustion and restarting the affected service instances.",
+    "resolution_notes": "Monitoring showed that the payment service had exhausted its available database connections. This prevented new payment requests from being processed. Database connections were cleared, the connection pool was adjusted, and the payment service instances were restarted."
+  }
+]

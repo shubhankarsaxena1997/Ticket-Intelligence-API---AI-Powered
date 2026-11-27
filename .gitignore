@@ -1,0 +1,6 @@
+venv/
+.env
+__pycache__/
+AI_Powered_ServiceNow_Ticket_Intelligence_Platform.txt
+.vscode
+.pytest_cache
